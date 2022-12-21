@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.Entities.Product;
+import com.example.projectg104.ProductUtil;
 import com.example.projectg104.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,18 +31,7 @@ public class DBFirebase {
     }
     public void insertData(@NonNull Product prod){
         // Create a new user with a first and last name
-        Map<String, Object> product = new HashMap<>();
-        product.put("id",prod.getId() );
-        product.put("name", prod.getName());
-        product.put("description", prod.getDescription());
-        product.put("price", prod.getPrice());
-        product.put("image", prod.getImage());
-        product.put("deleted", prod.isDeleted());
-        product.put("createdAt", prod.getCreatedAt());
-        product.put("updatedAt", prod.getUpdatedAt());
-        product.put("latitud", prod.getLatitud());
-        product.put("longitud", prod.getLongitud());
-
+        Map<String, Object> product = ProductUtil.toProductMap(prod);
         // Add a new document with a generated ID
         db.collection("products")
             .add(product)
@@ -70,18 +60,7 @@ public class DBFirebase {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             Product product = null;
                             if(!Boolean.valueOf(document.getData().get("deleted").toString())){
-                                product = new Product(
-                                        document.getData().get("id").toString(),
-                                        document.getData().get("name").toString(),
-                                        document.getData().get("description").toString(),
-                                        Integer.parseInt(document.getData().get("price").toString()),
-                                        document.getData().get("image").toString(),
-                                        Boolean.valueOf(document.getData().get("deleted").toString()),
-                                        Util.stringToDate(document.getData().get("createdAt").toString()),
-                                        Util.stringToDate(document.getData().get("updatedAt").toString()),
-                                        Double.parseDouble(document.getData().get("latitud").toString()),
-                                        Double.parseDouble(document.getData().get("longitud").toString())
-                                );
+                                product = ProductUtil.toProduct(document.getData());
                                 list.add(product);
                             }
                         }
@@ -106,20 +85,14 @@ public class DBFirebase {
                 });
     }
     public void updateData(@NonNull Product producto){
+        Map<String, Object> productMap = ProductUtil.toProductMapMini(producto);
         db.collection("products").whereEqualTo("id", producto.getId())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                documentSnapshot.getReference().update(
-                                        "name", producto.getName(),
-                                        "description", producto.getDescription(),
-                                        "price", producto.getPrice(),
-                                        "image", producto.getImage(),
-                                        "latitud", producto.getLatitud(),
-                                        "longitud", producto.getLongitud()
-                                );
+                                documentSnapshot.getReference().update(productMap);
                             }
                         }
                     }
