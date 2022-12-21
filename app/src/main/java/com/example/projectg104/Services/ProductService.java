@@ -9,6 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.R;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ProductService {
-    public ArrayList<Product> cursorToArray(Cursor cursor){
+    public ArrayList<Product> cursorToArray(@NonNull Cursor cursor){
         ArrayList<Product> list = new ArrayList<>();
         if(cursor.getCount() == 0){
             return list;
@@ -43,20 +45,17 @@ public class ProductService {
         }
         return list;
     }
-
-    public byte[] imageViewToByte(ImageView imageView){
+    public byte[] imageViewToByte(@NonNull ImageView imageView){
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
-
     public Bitmap byteToBitmap(byte[] image){
         Bitmap bitmap  = BitmapFactory.decodeByteArray(image, 0, image.length );
         return bitmap;
     }
-
     public Date stringToDate (String date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -66,13 +65,11 @@ public class ProductService {
         }
         return null;
     }
-
     public String dateToString (Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Log.d("ErrorDate", dateFormat.format(date));
         return dateFormat.format(date);
     }
-
     public void insertUriToImageView(String url, ImageView imageView, Context context){
         Glide.with(context)
                 .load(url)
