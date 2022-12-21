@@ -1,10 +1,12 @@
-package com.example.projectg104;
+package com.example.projectg104.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
+import com.example.projectg104.R;
 
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapEventsReceiver;

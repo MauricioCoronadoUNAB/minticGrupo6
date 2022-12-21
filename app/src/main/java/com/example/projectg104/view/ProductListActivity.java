@@ -1,4 +1,4 @@
-package com.example.projectg104;
+package com.example.projectg104.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.DB.DBHelper;
 import com.example.projectg104.Entities.Product;
+import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 
 import java.util.ArrayList;

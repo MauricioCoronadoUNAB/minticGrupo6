@@ -6,7 +6,7 @@
     android:gravity="center"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProductEditActivity">
+    tools:context=".view.ProductEditActivity">
 
     <TextView
         android:id="@+id/textView"

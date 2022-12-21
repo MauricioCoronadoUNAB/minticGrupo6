@@ -14,9 +14,9 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.ProductListActivity;
-import com.example.projectg104.ProductDetailsActivity;
-import com.example.projectg104.ProductEditActivity;
+import com.example.projectg104.view.ProductListActivity;
+import com.example.projectg104.view.ProductDetailsActivity;
+import com.example.projectg104.view.ProductEditActivity;
 import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 

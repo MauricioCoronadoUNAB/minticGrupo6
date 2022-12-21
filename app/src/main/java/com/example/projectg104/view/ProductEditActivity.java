@@ -1,4 +1,4 @@
-package com.example.projectg104;
+package com.example.projectg104.view;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.DB.DBHelper;
 import com.example.projectg104.Entities.Product;
+import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
