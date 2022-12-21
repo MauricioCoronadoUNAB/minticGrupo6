@@ -4,6 +4,8 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import com.example.projectg104.Entities.Product;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductUtil {
 
@@ -31,5 +33,44 @@ public class ProductUtil {
 
         return productList;
     }
-
+    @NonNull
+    public static Map<String, Object> toProductMap(@NonNull Product data){
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("id",data.getId() );
+        dataMap.put("name", data.getName());
+        dataMap.put("description", data.getDescription());
+        dataMap.put("price", data.getPrice());
+        dataMap.put("image", data.getImage());
+        dataMap.put("deleted", data.isDeleted());
+        dataMap.put("createdAt", data.getCreatedAt());
+        dataMap.put("updatedAt", data.getUpdatedAt());
+        dataMap.put("latitud", data.getLatitud());
+        dataMap.put("longitud", data.getLongitud());
+        return dataMap;
+    }
+    public static Map<String, Object> toProductMapMini(@NonNull Product data){
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("name", data.getName());
+        dataMap.put("description", data.getDescription());
+        dataMap.put("price", data.getPrice());
+        dataMap.put("image", data.getImage());
+        dataMap.put("latitud", data.getLatitud());
+        dataMap.put("longitud", data.getLongitud());
+        return dataMap;
+    }
+    @NonNull
+    public static Product toProduct(@NonNull Map<String, Object> data){
+        Product product = new Product();
+        product.setId(data.get("id").toString());
+        product.setName(data.get("name").toString());
+        product.setDescription(data.get("description").toString());
+        product.setPrice(Integer.parseInt(data.get("price").toString()));
+        product.setImage(data.get("image").toString());
+        product.setDeleted(Boolean.valueOf(data.get("deleted").toString()));
+        product.setCreatedAt(Util.stringToDate(data.get("createdAt").toString()));
+        product.setUpdatedAt(Util.stringToDate(data.get("updatedAt").toString()));
+        product.setLatitud(Double.parseDouble(data.get("latitud").toString()));
+        product.setLongitud(Double.parseDouble(data.get("longitud").toString()));
+        return product;
+    }
 }
