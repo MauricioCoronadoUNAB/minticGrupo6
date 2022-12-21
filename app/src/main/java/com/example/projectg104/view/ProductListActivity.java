@@ -38,7 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
             dbFirebase = new DBFirebase();
             productService = new ProductService();
             Cursor cursor = dbHelper.getData();
-            arrayProducts = productService.cursorToArray(cursor);
+            arrayProducts = productService.toProductList(cursor);
             //if(arrayProducts.size() == 0){
                // dbFirebase.syncData(dbHelper);
             //}

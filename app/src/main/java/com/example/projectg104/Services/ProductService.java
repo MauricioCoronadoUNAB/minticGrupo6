@@ -11,10 +11,10 @@ import com.example.projectg104.Util;
 import java.util.ArrayList;
 
 public class ProductService {
-    public ArrayList<Product> cursorToArray(@NonNull Cursor cursor){
-        return ToProductList(DBHelperUtil.cursorToArray(cursor));
+    public ArrayList<Product> toProductList(@NonNull Cursor cursor){
+        return toProductList(DBHelperUtil.cursorToArray(cursor));
     }
-    public ArrayList<Product> ToProductList(@NonNull ArrayList<ArrayList<String>> data){
+    public ArrayList<Product> toProductList(@NonNull ArrayList<ArrayList<String>> data){
         ArrayList<Product> productList = new ArrayList<>();
         for (ArrayList<String> item : data) {
             Product product = new Product();
