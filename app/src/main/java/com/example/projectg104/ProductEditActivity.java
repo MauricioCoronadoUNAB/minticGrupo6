@@ -6,8 +6,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,11 +35,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class ProductForm extends AppCompatActivity {
+public class ProductEditActivity extends AppCompatActivity {
     private ProductService productService;
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
@@ -52,13 +48,13 @@ public class ProductForm extends AppCompatActivity {
     private MapView map;
     private MapController mapController;
     private StorageReference storageReference;
-    private String urlImage;
+    private String urlImage = "";
     ActivityResultLauncher<String> content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_form);
+        setContentView(R.layout.product_edit_activity);
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
         btnFormProduct = (Button) findViewById(R.id.btnFormProduct);
@@ -145,7 +141,7 @@ public class ProductForm extends AppCompatActivity {
                                        public void onSuccess(Uri uri) {
                                            Uri downloadUrl = uri;
                                            urlImage = downloadUrl.toString();
-                                           productService.insertUriToImageView(urlImage,imgFormProduct,ProductForm.this);
+                                           productService.insertUriToImageView(urlImage,imgFormProduct, ProductEditActivity.this);
                                        }
                                    });
                                }
@@ -189,7 +185,7 @@ public class ProductForm extends AppCompatActivity {
                     Log.e("DB Insert", e.toString());
                 }
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), ProductListActivity.class);
                 startActivity(intent);
             }
         });

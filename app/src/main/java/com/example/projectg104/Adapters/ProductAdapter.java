@@ -3,8 +3,6 @@ package com.example.projectg104.Adapters;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,9 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.MainActivity;
-import com.example.projectg104.MainActivity2;
-import com.example.projectg104.MainActivity3;
-import com.example.projectg104.ProductForm;
+import com.example.projectg104.ProductListActivity;
+import com.example.projectg104.ProductDetailsActivity;
+import com.example.projectg104.ProductEditActivity;
 import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 
@@ -54,7 +51,7 @@ public class ProductAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        view = layoutInflater.inflate(R.layout.product_template, null);
+        view = layoutInflater.inflate(R.layout.product_list_item_layout, null);
 
         ImageView imgProduct = (ImageView) view.findViewById(R.id.imgProduct);
         TextView textNameProduct = (TextView) view.findViewById(R.id.textNameProduct);
@@ -81,7 +78,7 @@ public class ProductAdapter extends BaseAdapter {
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), MainActivity3.class);
+                Intent intent = new Intent(context.getApplicationContext(), ProductDetailsActivity.class);
                 intent.putExtra("id", String.valueOf(product.getId()));
                 intent.putExtra("name", String.valueOf(product.getName()));
                 intent.putExtra("description", String.valueOf(product.getDescription()));
@@ -94,7 +91,7 @@ public class ProductAdapter extends BaseAdapter {
         btnEditTemplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), ProductForm.class);
+                Intent intent = new Intent(context.getApplicationContext(), ProductEditActivity.class);
                 intent.putExtra("edit", true);
                 intent.putExtra("id", product.getId());
                 intent.putExtra("name", product.getName());
@@ -119,7 +116,7 @@ public class ProductAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 DBFirebase dbFirebase = new DBFirebase();
                                 dbFirebase.deleteData(product.getId());
-                                Intent intent = new Intent(context.getApplicationContext(), MainActivity2.class);
+                                Intent intent = new Intent(context.getApplicationContext(), ProductListActivity.class);
                                 context.startActivity(intent);
                             }
                         })

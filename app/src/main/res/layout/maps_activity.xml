@@ -7,14 +7,14 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".Maps">
+    tools:context=".MapsActivity">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="60dp"
-        android:text="Mapa" />
+        android:text="@string/maps" />
 
     <org.osmdroid.views.MapView
         android:id="@+id/map"

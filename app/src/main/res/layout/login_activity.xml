@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Register">
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,13 +20,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textEmailReg"
+            android:id="@+id/textEmail"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Email" />
 
         <EditText
-            android:id="@+id/editEmailReg"
+            android:id="@+id/editEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,32 +39,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textPassReg"
+            android:id="@+id/textPass"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Contraseña" />
 
         <EditText
-            android:id="@+id/editPassReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/ConfirmReg"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Confirmar" />
-
-        <EditText
-            android:id="@+id/editConfirmReg"
+            android:id="@+id/editPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,8 +53,14 @@
             android:inputType="textPassword"/>
     </LinearLayout>
     <Button
-        android:id="@+id/btnRegisterReg"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar" />
+        android:text="Ingresar" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registro" />
 </LinearLayout>
