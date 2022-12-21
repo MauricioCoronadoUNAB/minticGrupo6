@@ -51,7 +51,7 @@ public class ProductAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        view = layoutInflater.inflate(R.layout.product_template, null);
+        view = layoutInflater.inflate(R.layout.product_list_item_layout, null);
 
         ImageView imgProduct = (ImageView) view.findViewById(R.id.imgProduct);
         TextView textNameProduct = (TextView) view.findViewById(R.id.textNameProduct);
