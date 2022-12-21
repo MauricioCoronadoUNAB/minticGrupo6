@@ -52,7 +52,7 @@ public class ProductForm extends AppCompatActivity {
     private MapView map;
     private MapController mapController;
     private StorageReference storageReference;
-    private String urlImage;
+    private String urlImage = "";
     ActivityResultLauncher<String> content;
 
     @Override
