@@ -6,8 +6,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,8 +35,6 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class ProductForm extends AppCompatActivity {
@@ -189,7 +185,7 @@ public class ProductForm extends AppCompatActivity {
                     Log.e("DB Insert", e.toString());
                 }
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), ProductListActivity.class);
                 startActivity(intent);
             }
         });

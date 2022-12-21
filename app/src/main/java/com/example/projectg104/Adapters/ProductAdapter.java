@@ -14,7 +14,7 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.MainActivity2;
+import com.example.projectg104.ProductListActivity;
 import com.example.projectg104.ProductDetailsActivity;
 import com.example.projectg104.ProductForm;
 import com.example.projectg104.R;
@@ -116,7 +116,7 @@ public class ProductAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 DBFirebase dbFirebase = new DBFirebase();
                                 dbFirebase.deleteData(product.getId());
-                                Intent intent = new Intent(context.getApplicationContext(), MainActivity2.class);
+                                Intent intent = new Intent(context.getApplicationContext(), ProductListActivity.class);
                                 context.startActivity(intent);
                             }
                         })

@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.DB.DBFirebase;
@@ -18,10 +17,9 @@ import com.example.projectg104.DB.DBHelper;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.Services.ProductService;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class MainActivity2 extends AppCompatActivity {
+public class ProductListActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
     private ProductService productService;
@@ -32,7 +30,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.product_list_activity);
         arrayProducts = new ArrayList<>();
         try {
             //dbHelper = new DBHelper(this);

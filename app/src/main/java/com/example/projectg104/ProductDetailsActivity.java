@@ -43,7 +43,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnProductInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), ProductListActivity.class);
                 startActivity(intent);
             }
         });
