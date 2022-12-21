@@ -1,4 +1,4 @@
-package com.example.projectg104;
+package com.example.projectg104.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 
 public class ProductDetailsActivity extends AppCompatActivity {
