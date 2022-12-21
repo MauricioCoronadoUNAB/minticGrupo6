@@ -1,20 +1,18 @@
-package com.example.projectg104.Services;
+package com.example.projectg104;
 
 import android.database.Cursor;
-
 import androidx.annotation.NonNull;
-
-import com.example.projectg104.DBHelperUtil;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Util;
-
 import java.util.ArrayList;
 
 public class ProductUtil {
-    public ArrayList<Product> toProductList(@NonNull Cursor cursor){
+
+    @NonNull
+    public static ArrayList<Product> toProductList(@NonNull Cursor cursor){
         return toProductList(DBHelperUtil.cursorToArray(cursor));
     }
-    public ArrayList<Product> toProductList(@NonNull ArrayList<ArrayList<String>> data){
+    @NonNull
+    public static ArrayList<Product> toProductList(@NonNull ArrayList<ArrayList<String>> data){
         ArrayList<Product> productList = new ArrayList<>();
         for (ArrayList<String> item : data) {
             Product product = new Product();
@@ -33,4 +31,5 @@ public class ProductUtil {
 
         return productList;
     }
+
 }

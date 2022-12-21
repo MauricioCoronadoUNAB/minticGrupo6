@@ -19,36 +19,29 @@ import com.example.projectg104.view.ProductListActivity;
 import com.example.projectg104.view.ProductDetailsActivity;
 import com.example.projectg104.view.ProductEditActivity;
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductUtil;
 
 import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Product> arrayProducts;
-    ProductUtil productService;
 
     public ProductAdapter(Context context, ArrayList<Product> arrayProducts) {
         this.context = context;
         this.arrayProducts = arrayProducts;
-        this.productService = new ProductUtil();
     }
-
     @Override
     public int getCount() {
         return arrayProducts.size();
     }
-
     @Override
     public Object getItem(int i) {
         return arrayProducts.get(i);
     }
-
     @Override
     public long getItemId(int i) {
         return i;
     }
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);

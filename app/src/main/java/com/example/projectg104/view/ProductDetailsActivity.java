@@ -10,12 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductUtil;
 import com.example.projectg104.ViewUtil;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     //private DBHelper dbHelper;
-    private ProductUtil productService;
     private Button btnProductInfo;
     private TextView textProductName, textProductDescription, textProductPrice;
     private ImageView imgProduct;
@@ -31,7 +29,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textProductDescription = (TextView) findViewById(R.id.textProductDescription);
         imgProduct = (ImageView) findViewById(R.id.imgProduct);
         //dbHelper = new DBHelper(this);
-        productService = new ProductUtil();
 
         Intent intentIn = getIntent();
 

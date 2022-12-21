@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Services.ProductUtil;
 import com.example.projectg104.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,14 +24,11 @@ import java.util.Map;
 
 public class DBFirebase {
     private FirebaseFirestore db;
-    private ProductUtil productService;
 
     public DBFirebase(){
         this.db = FirebaseFirestore.getInstance();
-        this.productService = new ProductUtil();
     }
-
-    public void insertData(Product prod){
+    public void insertData(@NonNull Product prod){
         // Create a new user with a first and last name
         Map<String, Object> product = new HashMap<>();
         product.put("id",prod.getId() );
@@ -63,7 +59,6 @@ public class DBFirebase {
             });
         //db.terminate();
     }
-
     public void getData(ProductAdapter productAdapter, ArrayList<Product> list){
         db.collection("products")
             .get()
@@ -97,7 +92,6 @@ public class DBFirebase {
                 }
             });
     }
-
     public void deleteData(String id){
         db.collection("products").whereEqualTo("id",id)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -111,8 +105,7 @@ public class DBFirebase {
                     }
                 });
     }
-
-    public void updateData(Product producto){
+    public void updateData(@NonNull Product producto){
         db.collection("products").whereEqualTo("id", producto.getId())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
