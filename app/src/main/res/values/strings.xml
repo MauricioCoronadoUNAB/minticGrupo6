@@ -17,4 +17,5 @@
     <string name="btn_info_product">VOLVER</string>
     <string name="title_activity_maps_google">MapsGoogle</string>
     <string name="no_text">no text</string>
+    <string name="maps">Maps</string>
 </resources>

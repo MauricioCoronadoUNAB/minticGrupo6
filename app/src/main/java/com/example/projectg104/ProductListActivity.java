@@ -68,7 +68,7 @@ public class ProductListActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.actioMap:
-                intent = new Intent(getApplicationContext(), Maps.class);
+                intent = new Intent(getApplicationContext(), MapsActivity.class);
                 ArrayList<String> latitudes = new ArrayList<>();
                 ArrayList<String> longitudes = new ArrayList<>();
 
