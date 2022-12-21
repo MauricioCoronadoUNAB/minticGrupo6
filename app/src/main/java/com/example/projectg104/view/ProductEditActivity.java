@@ -21,7 +21,7 @@ import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.DB.DBHelper;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.ViewUtil;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -39,7 +39,6 @@ import org.osmdroid.views.overlay.Marker;
 import java.nio.charset.StandardCharsets;
 
 public class ProductEditActivity extends AppCompatActivity {
-    private ProductService productService;
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
     private Button btnFormProduct;
@@ -118,7 +117,6 @@ public class ProductEditActivity extends AppCompatActivity {
 
         byte[] img = "".getBytes(StandardCharsets.UTF_8);
         try {
-            productService = new ProductService();
             dbHelper = new DBHelper(this);
             dbFirebase = new DBFirebase();
         }catch (Exception e){
@@ -142,7 +140,7 @@ public class ProductEditActivity extends AppCompatActivity {
                                        public void onSuccess(Uri uri) {
                                            Uri downloadUrl = uri;
                                            urlImage = downloadUrl.toString();
-                                           productService.insertUriToImageView(urlImage,imgFormProduct, ProductEditActivity.this);
+                                           ViewUtil.insertUriToImageView(ProductEditActivity.this,imgFormProduct,urlImage);
                                        }
                                    });
                                }

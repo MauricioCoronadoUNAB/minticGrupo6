@@ -2,14 +2,13 @@ package com.example.projectg104.DB;
 
 import static android.content.ContentValues.TAG;
 
-import android.database.Cursor;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,22 +18,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DBFirebase {
     private FirebaseFirestore db;
-    private ProductService productService;
 
     public DBFirebase(){
         this.db = FirebaseFirestore.getInstance();
-        this.productService = new ProductService();
     }
-
-    public void insertData(Product prod){
+    public void insertData(@NonNull Product prod){
         // Create a new user with a first and last name
         Map<String, Object> product = new HashMap<>();
         product.put("id",prod.getId() );
@@ -65,7 +59,6 @@ public class DBFirebase {
             });
         //db.terminate();
     }
-
     public void getData(ProductAdapter productAdapter, ArrayList<Product> list){
         db.collection("products")
             .get()
@@ -84,8 +77,8 @@ public class DBFirebase {
                                         Integer.parseInt(document.getData().get("price").toString()),
                                         document.getData().get("image").toString(),
                                         Boolean.valueOf(document.getData().get("deleted").toString()),
-                                        productService.stringToDate(document.getData().get("createdAt").toString()),
-                                        productService.stringToDate(document.getData().get("updatedAt").toString()),
+                                        Util.stringToDate(document.getData().get("createdAt").toString()),
+                                        Util.stringToDate(document.getData().get("updatedAt").toString()),
                                         Double.parseDouble(document.getData().get("latitud").toString()),
                                         Double.parseDouble(document.getData().get("longitud").toString())
                                 );
@@ -99,7 +92,6 @@ public class DBFirebase {
                 }
             });
     }
-
     public void deleteData(String id){
         db.collection("products").whereEqualTo("id",id)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -113,8 +105,7 @@ public class DBFirebase {
                     }
                 });
     }
-
-    public void updateData(Product producto){
+    public void updateData(@NonNull Product producto){
         db.collection("products").whereEqualTo("id", producto.getId())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

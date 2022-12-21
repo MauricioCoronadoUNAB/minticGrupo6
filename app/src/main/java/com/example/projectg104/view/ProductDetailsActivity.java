@@ -10,11 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.ViewUtil;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     //private DBHelper dbHelper;
-    private ProductService productService;
     private Button btnProductInfo;
     private TextView textProductName, textProductDescription, textProductPrice;
     private ImageView imgProduct;
@@ -30,7 +29,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textProductDescription = (TextView) findViewById(R.id.textProductDescription);
         imgProduct = (ImageView) findViewById(R.id.imgProduct);
         //dbHelper = new DBHelper(this);
-        productService = new ProductService();
 
         Intent intentIn = getIntent();
 
@@ -39,7 +37,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textProductName.setText(intentIn.getStringExtra("name"));
         textProductDescription.setText(intentIn.getStringExtra("description"));
         textProductPrice.setText(String.valueOf(intentIn.getIntExtra("price",0)));
-        productService.insertUriToImageView(intentIn.getStringExtra("image"),imgProduct, ProductDetailsActivity.this);
+        ViewUtil.insertUriToImageView(ProductDetailsActivity.this,imgProduct,intentIn.getStringExtra("image"));
 
         btnProductInfo.setOnClickListener(new View.OnClickListener() {
             @Override
