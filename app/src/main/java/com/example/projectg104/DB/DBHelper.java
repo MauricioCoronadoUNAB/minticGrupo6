@@ -10,17 +10,17 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.NonNull;
 
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Services.ProductUtil;
 import com.example.projectg104.Util;
 
 public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
-    private ProductService productService;
+    private ProductUtil productService;
 
     public DBHelper(Context context){
         super(context, "G104.db", null, 1);
         sqLiteDatabase = this.getWritableDatabase();
-        productService = new ProductService();
+        productService = new ProductUtil();
     }
 
     @Override

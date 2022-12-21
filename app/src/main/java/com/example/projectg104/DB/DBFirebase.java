@@ -2,14 +2,13 @@ package com.example.projectg104.DB;
 
 import static android.content.ContentValues.TAG;
 
-import android.database.Cursor;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Services.ProductUtil;
 import com.example.projectg104.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,19 +19,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DBFirebase {
     private FirebaseFirestore db;
-    private ProductService productService;
+    private ProductUtil productService;
 
     public DBFirebase(){
         this.db = FirebaseFirestore.getInstance();
-        this.productService = new ProductService();
+        this.productService = new ProductUtil();
     }
 
     public void insertData(Product prod){

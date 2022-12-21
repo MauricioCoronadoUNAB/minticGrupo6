@@ -14,25 +14,24 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.Util;
 import com.example.projectg104.ViewUtil;
 import com.example.projectg104.view.ProductListActivity;
 import com.example.projectg104.view.ProductDetailsActivity;
 import com.example.projectg104.view.ProductEditActivity;
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Services.ProductUtil;
 
 import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Product> arrayProducts;
-    ProductService productService;
+    ProductUtil productService;
 
     public ProductAdapter(Context context, ArrayList<Product> arrayProducts) {
         this.context = context;
         this.arrayProducts = arrayProducts;
-        this.productService = new ProductService();
+        this.productService = new ProductUtil();
     }
 
     @Override

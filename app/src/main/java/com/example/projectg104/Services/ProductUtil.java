@@ -10,7 +10,7 @@ import com.example.projectg104.Util;
 
 import java.util.ArrayList;
 
-public class ProductService {
+public class ProductUtil {
     public ArrayList<Product> toProductList(@NonNull Cursor cursor){
         return toProductList(DBHelperUtil.cursorToArray(cursor));
     }

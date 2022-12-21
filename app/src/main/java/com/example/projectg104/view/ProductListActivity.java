@@ -16,14 +16,14 @@ import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.DB.DBHelper;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.R;
-import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Services.ProductUtil;
 
 import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
-    private ProductService productService;
+    private ProductUtil productService;
     private ListView listViewProducts;
     private ProductAdapter productAdapter;
     private ArrayList<Product> arrayProducts;
@@ -36,7 +36,7 @@ public class ProductListActivity extends AppCompatActivity {
         try {
             //dbHelper = new DBHelper(this);
             dbFirebase = new DBFirebase();
-            productService = new ProductService();
+            productService = new ProductUtil();
             Cursor cursor = dbHelper.getData();
             arrayProducts = productService.toProductList(cursor);
             //if(arrayProducts.size() == 0){
