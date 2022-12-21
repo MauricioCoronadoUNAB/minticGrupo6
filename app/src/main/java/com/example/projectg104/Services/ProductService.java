@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.bumptech.glide.Glide;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.R;
+import com.example.projectg104.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
@@ -35,8 +36,8 @@ public class ProductService {
                         Integer.parseInt(cursor.getString(3)),
                         cursor.getString(4),
                         Boolean.valueOf(cursor.getString(5)),
-                        stringToDate(cursor.getString(6)),
-                        stringToDate(cursor.getString(7)),
+                        Util.stringToDate(cursor.getString(6)),
+                        Util.stringToDate(cursor.getString(7)),
                         Double.parseDouble(cursor.getString(8)),
                         Double.parseDouble(cursor.getString(9))
                 );
@@ -44,36 +45,5 @@ public class ProductService {
             }
         }
         return list;
-    }
-    public byte[] imageViewToByte(@NonNull ImageView imageView){
-        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        return byteArray;
-    }
-    public Bitmap byteToBitmap(byte[] image){
-        Bitmap bitmap  = BitmapFactory.decodeByteArray(image, 0, image.length );
-        return bitmap;
-    }
-    public Date stringToDate (String date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            return dateFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public String dateToString (Date date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Log.d("ErrorDate", dateFormat.format(date));
-        return dateFormat.format(date);
-    }
-    public void insertUriToImageView(String url, ImageView imageView, Context context){
-        Glide.with(context)
-                .load(url)
-                .override(500,500)
-                .into(imageView);
     }
 }

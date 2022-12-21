@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteStatement;
 
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Util;
 
 public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
@@ -48,8 +49,8 @@ public class DBHelper extends SQLiteOpenHelper {
         statement.bindString(4, String.valueOf(product.getPrice()));
         statement.bindString(5, product.getImage());
         statement.bindString(6, String.valueOf(product.isDeleted()));
-        statement.bindString(7, productService.dateToString(product.getCreatedAt()));
-        statement.bindString(8, productService.dateToString(product.getUpdatedAt()));
+        statement.bindString(7, Util.dateToString(product.getCreatedAt()));
+        statement.bindString(8, Util.dateToString(product.getUpdatedAt()));
         statement.executeInsert();
     }
 

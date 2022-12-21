@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.ViewUtil;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     //private DBHelper dbHelper;
@@ -39,7 +40,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textProductName.setText(intentIn.getStringExtra("name"));
         textProductDescription.setText(intentIn.getStringExtra("description"));
         textProductPrice.setText(String.valueOf(intentIn.getIntExtra("price",0)));
-        productService.insertUriToImageView(intentIn.getStringExtra("image"),imgProduct, ProductDetailsActivity.this);
+        ViewUtil.insertUriToImageView(ProductDetailsActivity.this,imgProduct,intentIn.getStringExtra("image"));
 
         btnProductInfo.setOnClickListener(new View.OnClickListener() {
             @Override

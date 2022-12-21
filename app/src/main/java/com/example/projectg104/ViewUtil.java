@@ -20,7 +20,7 @@ public class ViewUtil {
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
-    public void insertUriToImageView(Context context,ImageView imageView,String url){
+    public static void insertUriToImageView(Context context, ImageView imageView, String url){
         Glide.with(context)
                 .load(url)
                 .override(500,500)

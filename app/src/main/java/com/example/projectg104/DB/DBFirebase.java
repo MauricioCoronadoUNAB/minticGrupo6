@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.projectg104.Adapters.ProductAdapter;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.Services.ProductService;
+import com.example.projectg104.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -84,8 +85,8 @@ public class DBFirebase {
                                         Integer.parseInt(document.getData().get("price").toString()),
                                         document.getData().get("image").toString(),
                                         Boolean.valueOf(document.getData().get("deleted").toString()),
-                                        productService.stringToDate(document.getData().get("createdAt").toString()),
-                                        productService.stringToDate(document.getData().get("updatedAt").toString()),
+                                        Util.stringToDate(document.getData().get("createdAt").toString()),
+                                        Util.stringToDate(document.getData().get("updatedAt").toString()),
                                         Double.parseDouble(document.getData().get("latitud").toString()),
                                         Double.parseDouble(document.getData().get("longitud").toString())
                                 );

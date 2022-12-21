@@ -14,6 +14,8 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
+import com.example.projectg104.Util;
+import com.example.projectg104.ViewUtil;
 import com.example.projectg104.view.ProductListActivity;
 import com.example.projectg104.view.ProductDetailsActivity;
 import com.example.projectg104.view.ProductEditActivity;
@@ -73,7 +75,7 @@ public class ProductAdapter extends BaseAdapter {
         String prices = "USD: "+Usd;
         textPriceProduct.setText(prices);
 
-        productService.insertUriToImageView(product.getImage(),imgProduct,context);
+        ViewUtil.insertUriToImageView(context,imgProduct,product.getImage());
 
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
