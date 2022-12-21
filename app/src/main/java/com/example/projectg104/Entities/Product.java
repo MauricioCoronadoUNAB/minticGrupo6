@@ -15,6 +15,8 @@ public class Product {
     private Double latitud;
     private Double longitud;
 
+    public Product() {
+    }
     public Product(String id, String name, String description, int price, String image, Double latitud, Double longitud) {
         this.latitud = latitud;
         this.longitud = longitud;

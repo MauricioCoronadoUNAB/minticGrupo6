@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.Services.ProductService;
 import com.example.projectg104.Util;
@@ -22,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(@NonNull SQLiteDatabase db) {
         db.execSQL( "CREATE TABLE PRODUCTS("+
                     "id TEXT PRIMARY KEY," +
                     "name VARCHAR," +
@@ -35,12 +37,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     ")");
     }
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(@NonNull SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS PRODUCTS");
     }
 
     //METODOS CRUD
-    public void insertData(Product product){
+    public void insertData(@NonNull Product product){
         String sql = "INSERT INTO PRODUCTS VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         SQLiteStatement statement = sqLiteDatabase.compileStatement(sql);
         statement.bindString(1, product.getId());
@@ -53,21 +55,17 @@ public class DBHelper extends SQLiteOpenHelper {
         statement.bindString(8, Util.dateToString(product.getUpdatedAt()));
         statement.executeInsert();
     }
-
     public Cursor getData(){
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS", null);
         return cursor;
     }
-
     public Cursor getDataById(String id){
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS WHERE id = "+id, null);
         return cursor;
     }
-
     public void deleteDataById(String id){
        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE id = " + id);
     }
-
     public void updateDataById(String id, String name, String description, String price, byte[] image){
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
