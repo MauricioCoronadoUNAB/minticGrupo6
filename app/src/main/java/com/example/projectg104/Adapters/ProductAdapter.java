@@ -16,7 +16,7 @@ import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.ProductListActivity;
 import com.example.projectg104.ProductDetailsActivity;
-import com.example.projectg104.ProductForm;
+import com.example.projectg104.ProductEditActivity;
 import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
 
@@ -91,7 +91,7 @@ public class ProductAdapter extends BaseAdapter {
         btnEditTemplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), ProductForm.class);
+                Intent intent = new Intent(context.getApplicationContext(), ProductEditActivity.class);
                 intent.putExtra("edit", true);
                 intent.putExtra("id", product.getId());
                 intent.putExtra("name", product.getName());

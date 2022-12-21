@@ -37,7 +37,7 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.nio.charset.StandardCharsets;
 
-public class ProductForm extends AppCompatActivity {
+public class ProductEditActivity extends AppCompatActivity {
     private ProductService productService;
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
@@ -54,7 +54,7 @@ public class ProductForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_form);
+        setContentView(R.layout.product_edit_activity);
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
         btnFormProduct = (Button) findViewById(R.id.btnFormProduct);
@@ -141,7 +141,7 @@ public class ProductForm extends AppCompatActivity {
                                        public void onSuccess(Uri uri) {
                                            Uri downloadUrl = uri;
                                            urlImage = downloadUrl.toString();
-                                           productService.insertUriToImageView(urlImage,imgFormProduct,ProductForm.this);
+                                           productService.insertUriToImageView(urlImage,imgFormProduct, ProductEditActivity.this);
                                        }
                                    });
                                }

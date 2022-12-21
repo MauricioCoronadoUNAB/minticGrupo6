@@ -64,7 +64,7 @@ public class ProductListActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case R.id.actionAdd:
-                intent = new Intent(getApplicationContext(), ProductForm.class);
+                intent = new Intent(getApplicationContext(), ProductEditActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.actioMap:
