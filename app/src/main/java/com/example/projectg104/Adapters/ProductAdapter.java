@@ -3,8 +3,6 @@ package com.example.projectg104.Adapters;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +14,8 @@ import android.app.AlertDialog;
 
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
-import com.example.projectg104.MainActivity;
 import com.example.projectg104.MainActivity2;
-import com.example.projectg104.MainActivity3;
+import com.example.projectg104.ProductDetailsActivity;
 import com.example.projectg104.ProductForm;
 import com.example.projectg104.R;
 import com.example.projectg104.Services.ProductService;
@@ -81,7 +78,7 @@ public class ProductAdapter extends BaseAdapter {
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), MainActivity3.class);
+                Intent intent = new Intent(context.getApplicationContext(), ProductDetailsActivity.class);
                 intent.putExtra("id", String.valueOf(product.getId()));
                 intent.putExtra("name", String.valueOf(product.getName()));
                 intent.putExtra("description", String.valueOf(product.getDescription()));

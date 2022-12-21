@@ -9,13 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.projectg104.DB.DBHelper;
-import com.example.projectg104.Entities.Product;
 import com.example.projectg104.Services.ProductService;
 
-import java.util.ArrayList;
-
-public class MainActivity3 extends AppCompatActivity {
+public class ProductDetailsActivity extends AppCompatActivity {
     //private DBHelper dbHelper;
     private ProductService productService;
     private Button btnProductInfo;
@@ -25,7 +21,7 @@ public class MainActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.product_details_activity);
 
         btnProductInfo = (Button) findViewById(R.id.btnProductInfo);
         textProductName = (TextView) findViewById(R.id.textProductName);
@@ -42,7 +38,7 @@ public class MainActivity3 extends AppCompatActivity {
         textProductName.setText(intentIn.getStringExtra("name"));
         textProductDescription.setText(intentIn.getStringExtra("description"));
         textProductPrice.setText(String.valueOf(intentIn.getIntExtra("price",0)));
-        productService.insertUriToImageView(intentIn.getStringExtra("image"),imgProduct, MainActivity3.this);
+        productService.insertUriToImageView(intentIn.getStringExtra("image"),imgProduct, ProductDetailsActivity.this);
 
         btnProductInfo.setOnClickListener(new View.OnClickListener() {
             @Override
