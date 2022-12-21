@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import com.example.projectg104.DB.DBFirebase;
 import com.example.projectg104.Entities.Product;
 import com.example.projectg104.ProductUtil;
-import com.example.projectg104.Util;
 import com.example.projectg104.ViewUtil;
 import com.example.projectg104.view.ProductListActivity;
 import com.example.projectg104.view.ProductDetailsActivity;
@@ -25,7 +24,6 @@ import com.example.projectg104.view.ProductEditActivity;
 import com.example.projectg104.R;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ProductAdapter extends BaseAdapter {
     private Context context;
@@ -63,7 +61,7 @@ public class ProductAdapter extends BaseAdapter {
         bindFields(view);
         Product product = arrayProducts.get(i);
         setFields(product);
-        initEventButton(product);
+        initEventOnClick(product);
         return view;
     }
     //---
@@ -87,15 +85,12 @@ public class ProductAdapter extends BaseAdapter {
         textPriceProduct.setText(prices);
         ViewUtil.insertUriToImageView(context,imgProduct,data.getImage());
     }
-    private void initEventButton(Product product){
+    private void initEventOnClick(Product product){
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ProductDetailsActivity.class);
-                Map<String,Object> productMap = ProductUtil.toProductMap(product);
-                for (Map.Entry entry: productMap.entrySet()) {
-                    intent.putExtra(entry.getKey().toString(), Util.getString(entry.getValue(),""));
-                }
+                ProductUtil.putProduct(intent,product);
                 context.startActivity(intent);
             }
         });

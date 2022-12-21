@@ -1,5 +1,6 @@
 package com.example.projectg104;
 
+import android.content.Intent;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import com.example.projectg104.Entities.Product;
@@ -48,6 +49,7 @@ public class ProductUtil {
         dataMap.put("longitud", data.getLongitud());
         return dataMap;
     }
+    @NonNull
     public static Map<String, Object> toProductMapMini(@NonNull Product data){
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("name", data.getName());
@@ -72,5 +74,20 @@ public class ProductUtil {
         product.setLatitud(Double.parseDouble(data.get("latitud").toString()));
         product.setLongitud(Double.parseDouble(data.get("longitud").toString()));
         return product;
+    }
+    public static Intent putProduct(Intent intent,Product product){
+        Map<String,Object> productMap = ProductUtil.toProductMap(product);
+        for (Map.Entry entry: productMap.entrySet()) {
+            intent.putExtra(entry.getKey().toString(), Util.getString(entry.getValue(),""));
+        }
+        return intent;
+    }
+    @NonNull
+    public static Product getProduct(Intent intent){
+        Map<String,Object> productMap = ProductUtil.toProductMap(new Product());
+        for (String clave:productMap.keySet()) {
+            productMap.put(clave,intent.getStringExtra(clave));
+        }
+        return toProduct(productMap);
     }
 }
