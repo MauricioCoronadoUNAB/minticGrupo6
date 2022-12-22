@@ -63,7 +63,7 @@ public class ProductUtil {
     @NonNull
     public static Product toProduct(@NonNull Map<String, Object> data){
         Product product = new Product();
-        product.setId(data.get("id").toString());
+        product.setId(Util.getString(data.get("id"),""));
         product.setName(data.get("name").toString());
         product.setDescription(data.get("description").toString());
         product.setPrice(Integer.parseInt(data.get("price").toString()));
