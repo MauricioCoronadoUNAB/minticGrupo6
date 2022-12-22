@@ -25,31 +25,16 @@ public class ProductListActivity extends AppCompatActivity {
     private DBFirebase dbFirebase;
     private ListView listViewProducts;
     private ProductAdapter productAdapter;
-    private ArrayList<Product> arrayProducts;
+    private ArrayList<Product> arrayProducts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_activity);
-        arrayProducts = new ArrayList<>();
-        try {
-            //dbHelper = new DBHelper(this);
-            dbFirebase = new DBFirebase();;
-            Cursor cursor = dbHelper.getData();
-            arrayProducts = ProductUtil.toProductList(cursor);
-            //if(arrayProducts.size() == 0){
-               // dbFirebase.syncData(dbHelper);
-            //}
-        }catch (Exception e){
-            Log.e("Database", e.toString());
-        }
+        bindFields();
+        initRepository();
+        getData();
 
-        listViewProducts = (ListView) findViewById(R.id.listViewProducts);
-
-        productAdapter = new ProductAdapter(this, arrayProducts);
-        listViewProducts.setAdapter(productAdapter);
-
-        dbFirebase.getData(productAdapter, arrayProducts);
     }
 
     @Override
@@ -57,7 +42,6 @@ public class ProductListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
@@ -68,19 +52,39 @@ public class ProductListActivity extends AppCompatActivity {
                 return true;
             case R.id.actioMap:
                 intent = new Intent(getApplicationContext(), MapsActivity.class);
-                ArrayList<String> latitudes = new ArrayList<>();
-                ArrayList<String> longitudes = new ArrayList<>();
-
-                for(int i=0; i<arrayProducts.size(); i++){
-                    latitudes.add(String.valueOf(arrayProducts.get(i).getLatitud()));
-                    longitudes.add(String.valueOf(arrayProducts.get(i).getLongitud()));
-                }
-                intent.putStringArrayListExtra("latitudes", latitudes);
-                intent.putStringArrayListExtra("longitudes", longitudes);
+                initCoordinates(intent);
                 startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void bindFields(){
+        productAdapter = new ProductAdapter(this, arrayProducts);
+        listViewProducts = (ListView) findViewById(R.id.listViewProducts);
+        listViewProducts.setAdapter(productAdapter);
+    }
+    public void initRepository(){
+        try {
+            dbFirebase = new DBFirebase();;
+            dbHelper = new DBHelper(this);
+        }catch (Exception e){
+            Log.e("Database", e.toString());
+        }
+    }
+    public void getData(){
+        dbFirebase.getData(productAdapter, arrayProducts);
+//        Cursor cursor = dbHelper.getData();
+//        arrayProducts = ProductUtil.toProductList(cursor);
+    }
+    public void initCoordinates(Intent intent){
+        ArrayList<String> latitudes = new ArrayList<>();
+        ArrayList<String> longitudes = new ArrayList<>();
+        for(int i=0; i<arrayProducts.size(); i++){
+            latitudes.add(String.valueOf(arrayProducts.get(i).getLatitud()));
+            longitudes.add(String.valueOf(arrayProducts.get(i).getLongitud()));
+        }
+        intent.putStringArrayListExtra("latitudes", latitudes);
+        intent.putStringArrayListExtra("longitudes", longitudes);
     }
 }

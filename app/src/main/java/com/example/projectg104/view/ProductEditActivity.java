@@ -172,22 +172,6 @@ public class ProductEditActivity extends AppCompatActivity {
                 try {
                     Product product = getFields();
                     saveData(product,edit,intent.getStringExtra("id"));
-//                    Product product = new Product(
-//                            editNameFormProduct.getText().toString(),
-//                            editDescriptionFormProduct.getText().toString(),
-//                            Integer.parseInt(editPriceFormProduct.getText().toString()),
-//                            urlImage,
-//                            Double.parseDouble(textLatitudFormProduct.getText().toString().trim()),
-//                            Double.parseDouble(textLongitudFormProduct.getText().toString().trim())
-//                    );
-//                    if(edit){
-//                        product.setId(intent.getStringExtra("id"));
-//                        dbFirebase.updateData(product);
-//                    }else{
-//                        //dbHelper.insertData(product);
-//                        dbFirebase.insertData(product);
-//                    }
-
                 }catch (Exception e){
                     Log.e("DB Insert", e.toString());
                 }
