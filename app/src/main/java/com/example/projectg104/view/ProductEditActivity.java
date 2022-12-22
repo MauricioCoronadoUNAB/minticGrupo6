@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
+import java.util.Date;
+import java.util.UUID;
+
 public class ProductEditActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
@@ -46,6 +51,8 @@ public class ProductEditActivity extends AppCompatActivity {
     private EditText editNameFormProduct, editDescriptionFormProduct, editPriceFormProduct, editIdFormProduct;
     private ImageView imgFormProduct;
     private TextView textLatitudFormProduct, textLongitudFormProduct;
+    private ImageButton btnToggleMap;
+    private ConstraintLayout mapContainer;
     private MapView map;
     private MapController mapController;
     private StorageReference storageReference;
@@ -87,6 +94,8 @@ public class ProductEditActivity extends AppCompatActivity {
         imgFormProduct = (ImageView) findViewById(R.id.imgFormProduct);
         textLatitudFormProduct = (TextView) findViewById(R.id.textLatitudFormProduct);
         textLongitudFormProduct = (TextView) findViewById(R.id.textLongitudFormProduct);
+        btnToggleMap = (ImageButton) findViewById(R.id.btnToggleMap);
+        mapContainer = (ConstraintLayout) findViewById(R.id.mapContainer);
     }
     private void setFields(@NonNull Product data){
         int Col = data.getPrice() * 5000;
@@ -180,6 +189,12 @@ public class ProductEditActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnToggleMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapContainer.setVisibility((mapContainer.getVisibility() == View.GONE)?View.VISIBLE:View.GONE);
+            }
+        });
     }
     private void initRepository(){
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -193,8 +208,12 @@ public class ProductEditActivity extends AppCompatActivity {
     private void saveData(Product data,boolean edit,String id){
         if(edit){
             data.setId(id);
+            data.setUpdatedAt(new Date());
             dbFirebase.updateData(data);
         }else{
+            data.setId(UUID.randomUUID().toString());
+            data.setCreatedAt(new Date());
+            data.setUpdatedAt(new Date());
             //dbHelper.insertData(data);
             dbFirebase.insertData(data);
         }

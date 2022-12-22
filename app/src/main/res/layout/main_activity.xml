@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@mipmap/ic_logo"
     tools:context=".view.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center|bottom"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btnInit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_init" />
+            android:text="@string/btn_init"
+            android:layout_marginBottom="35dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,13 +7,15 @@
         android:id="@+id/itemFavorite"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:title=""/>
+        android:title=""
+        android:visible="false"/>
 
     <item
         android:icon="@drawable/ic_baseline_share_24"
         android:id="@+id/itemShare"
         app:showAsAction="always"
-        android:title=""/>
+        android:title=""
+        android:visible="false"/>
 
     <item
         android:id="@+id/itemMore"
@@ -28,7 +30,8 @@
             <item
                 app:showAsAction="ifRoom"
                 android:id="@+id/actioMap"
-                android:title="Mapa" />
+                android:title="Mapa"
+                android:visible="false"/>
         </menu>
     </item>
 </menu>

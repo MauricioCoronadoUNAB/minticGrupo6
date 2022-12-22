@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectG104</string>
+    <string name="app_name">Tool trend</string>
 
     // Strings MainActivity
     <string name="btn_init">HOME</string>
@@ -16,6 +16,7 @@
     // Strings MainActivity3
     <string name="btn_info_product">VOLVER</string>
     <string name="title_activity_maps_google">MapsGoogle</string>
-    <string name="no_text">no text</string>
     <string name="maps">Maps</string>
+    <string name="not_text">not text</string>
+    <string name="edit_product">Edit product</string>
 </resources>
