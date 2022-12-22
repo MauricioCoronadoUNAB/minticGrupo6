@@ -41,6 +41,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
+import java.util.Date;
+import java.util.UUID;
+
 public class ProductEditActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
@@ -205,8 +208,12 @@ public class ProductEditActivity extends AppCompatActivity {
     private void saveData(Product data,boolean edit,String id){
         if(edit){
             data.setId(id);
+            data.setUpdatedAt(new Date());
             dbFirebase.updateData(data);
         }else{
+            data.setId(UUID.randomUUID().toString());
+            data.setCreatedAt(new Date());
+            data.setUpdatedAt(new Date());
             //dbHelper.insertData(data);
             dbFirebase.insertData(data);
         }
