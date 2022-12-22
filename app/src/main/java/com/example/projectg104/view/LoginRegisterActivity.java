@@ -22,44 +22,57 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private Button btnRegisterReg;
     private EditText editEmailReg, editPassReg, editConfirmReg;
     private FirebaseAuth mAuth;
+    String email,pass,confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_register_activity);
-
+        bindFields();
+        initAuth();
+        initEventOnClick();
+    }
+    public void bindFields(){
         btnRegisterReg = (Button) findViewById(R.id.btnRegisterReg);
         editEmailReg = (EditText) findViewById(R.id.editEmailReg);
         editPassReg = (EditText) findViewById(R.id.editPassReg);
         editConfirmReg = (EditText) findViewById(R.id.editConfirmReg);
+    }
+    public void getFields(){
+        email = editEmailReg.getText().toString().trim();
+        pass = editPassReg.getText().toString().trim();
+        confirm = editConfirmReg.getText().toString().trim();
+    }
+    public void initAuth(){
         mAuth = FirebaseAuth.getInstance();
-
+    }
+    public void register(String email, String pass){
+        mAuth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Usuario creado",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Error en Registro", Toast.LENGTH_SHORT).show();
+                        Log.e("UserCreate", e.toString());
+                    }
+                });
+    }
+    public void initEventOnClick(){
         btnRegisterReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = editEmailReg.getText().toString().trim();
-                String pass = editPassReg.getText().toString().trim();
-                String confirm = editConfirmReg.getText().toString().trim();
-
+                getFields();
                 if(pass.compareTo(confirm) == 0){
-                    mAuth.createUserWithEmailAndPassword(email, pass)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(),"Usuario creado",Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                        startActivity(intent);
-                                    }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Error en Registro", Toast.LENGTH_SHORT).show();
-                                    Log.e("UserCreate", e.toString());
-                                }
-                            });
+                    register(email,pass);
                 }else{
                     Toast.makeText(getApplicationContext(),"Contraseña no coincide",Toast.LENGTH_SHORT).show();
                 }
