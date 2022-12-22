@@ -39,12 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPass = (EditText) findViewById(R.id.editPass);
     }
-    public void initAuth(){
-        mAuth = FirebaseAuth.getInstance();
-    }
     public void getFields(){
         email = editEmail.getText().toString().trim();
         pass = editPass.getText().toString().trim();
+    }
+    public void initAuth(){
+        mAuth = FirebaseAuth.getInstance();
     }
     public void authenticate(String email, String pass){
         mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
