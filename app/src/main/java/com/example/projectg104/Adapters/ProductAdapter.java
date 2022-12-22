@@ -74,9 +74,6 @@ public class ProductAdapter extends BaseAdapter {
         btnDeleteTemplate = (Button) view.findViewById(R.id.btnDeleteTemplate);
     }
     private void setFields(@NonNull Product data){
-        //byte[] image = product.getImage();
-        //Bitmap bitmap  = BitmapFactory.decodeByteArray(image, 0, image.length );
-        //imgProduct.setImageBitmap(bitmap);
         int Col = data.getPrice() * 5000;
         int Usd = data.getPrice();
         String prices = "USD: "+Usd;
@@ -98,19 +95,8 @@ public class ProductAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ProductEditActivity.class);
-//                Map<String,Object> productMap = ProductUtil.toProductMap(product);
                 intent.putExtra("edit", true);
-//                for (Map.Entry entry: productMap.entrySet()) {
-//                    intent.putExtra(entry.getKey().toString(), Util.getString(entry.getValue(),""));
-//                }
-                intent.putExtra("id", product.getId());
-                intent.putExtra("name", product.getName());
-                intent.putExtra("description", product.getDescription());
-                intent.putExtra("price", product.getPrice());
-                intent.putExtra("image", product.getImage());
-                intent.putExtra("latitud", product.getLatitud());
-                intent.putExtra("longitud", product.getLongitud());
-
+                ProductUtil.putProduct(intent,product);
                 context.startActivity(intent);
             }
         });
