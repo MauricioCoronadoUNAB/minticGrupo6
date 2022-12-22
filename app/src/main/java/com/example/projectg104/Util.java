@@ -33,4 +33,8 @@ public class Util {
         Log.d("ErrorDate", dateFormat.format(date));
         return dateFormat.format(date);
     }
+    public static String getString(Object object,String byDefault ){
+        String _byDefault = (byDefault != null)?byDefault:"";
+        return (object != null)?String.valueOf(object):_byDefault;
+    }
 }
